@@ -900,8 +900,13 @@ typedef unsigned short int in_port_t;
 #if !defined(SSL_LIB)
 #define SSL_LIB "libssl.so"
 #endif
+#if defined(_GNU_SOURCE)
+#include <gnu/lib-names.h>
+#else
+#define LIBCRYPT_SO "libcrypt.so"
+#endif
 #if !defined(CRYPTO_LIB)
-#define CRYPTO_LIB "libcrypto.so"
+#define CRYPTO_LIB LIBCRYPT_SO
 #endif
 #endif
 #if !defined(O_BINARY)
